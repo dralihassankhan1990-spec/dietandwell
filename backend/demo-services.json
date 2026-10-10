@@ -1,0 +1,122 @@
+[
+  {
+    "active": true,
+    "description": "Personalized nutrition counseling tailored to your unique health goals, lifestyle, and dietary preferences.",
+    "duration": "60 minutes",
+    "icon": "🥗",
+    "image": "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&h=400&fit=crop&q=80",
+    "longDescription": "Our comprehensive one-on-one nutrition consultation provides you with personalized guidance from a registered dietitian. During your session, we'll conduct an in-depth assessment of your current diet, medical history, lifestyle factors, and health goals. You'll receive a customized nutrition plan designed specifically for you, along with practical strategies for implementation. Whether you're managing a chronic condition, seeking weight management support, or simply want to optimize your health, our expert guidance will help you achieve sustainable results. Follow-up sessions ensure continued progress and plan adjustments as needed.",
+    "name": "One-on-One Nutrition Consultation",
+    "price": 150.0,
+    "slug": "one-on-one-nutrition-consultation",
+    "sortOrder": 1
+  },
+  {
+    "active": true,
+    "description": "Custom meal plans designed around your preferences, schedule, and nutritional needs with weekly updates.",
+    "duration": "Monthly subscription",
+    "icon": "📋",
+    "image": "https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=600&h=400&fit=crop&q=80",
+    "longDescription": "Take the guesswork out of healthy eating with our personalized meal planning service. Receive weekly customized meal plans that align with your dietary preferences, cooking skills, time constraints, and nutritional goals. Each plan includes detailed recipes, shopping lists, and meal prep guidance. We accommodate all dietary patterns including vegetarian, vegan, gluten-free, dairy-free, and more. Plans are flexible and can be adjusted based on your feedback. Perfect for busy professionals, families, or anyone looking to simplify healthy eating while ensuring optimal nutrition.",
+    "name": "Personalized Meal Planning",
+    "price": 199.0,
+    "slug": "personalized-meal-planning",
+    "sortOrder": 2
+  },
+  {
+    "active": true,
+    "description": "Evidence-based weight loss or gain program with ongoing support, accountability, and behavior modification strategies.",
+    "duration": "12-week program",
+    "icon": "⚖️",
+    "image": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=400&fit=crop&q=80",
+    "longDescription": "Our comprehensive weight management program goes beyond simple calorie counting. We focus on sustainable lifestyle changes that lead to lasting results. The program includes initial assessment, personalized nutrition plan, weekly check-ins, progress tracking, and behavior modification coaching. You'll learn to identify emotional eating triggers, develop healthy habits, and create a positive relationship with food. We address the root causes of weight challenges and provide tools for long-term success. Includes access to our online portal for meal tracking, educational resources, and community support.",
+    "name": "Weight Management Program",
+    "price": 399.0,
+    "slug": "weight-management-program",
+    "sortOrder": 3
+  },
+  {
+    "active": true,
+    "description": "Optimize athletic performance with tailored nutrition strategies for training, competition, and recovery.",
+    "duration": "60 minutes",
+    "icon": "💪",
+    "image": "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=600&h=400&fit=crop&q=80",
+    "longDescription": "Maximize your athletic potential with specialized sports nutrition coaching. Our registered sports dietitians work with athletes of all levels—from weekend warriors to competitive athletes. We develop customized fueling strategies for training, competition, and recovery. Services include body composition analysis, hydration protocols, supplement guidance, meal timing optimization, and race-day nutrition planning. We address specific needs for endurance athletes, strength athletes, team sports, and more. Improve performance, reduce injury risk, and achieve your athletic goals through evidence-based nutrition strategies.",
+    "name": "Sports Nutrition Coaching",
+    "price": 175.0,
+    "slug": "sports-nutrition-coaching",
+    "sortOrder": 4
+  },
+  {
+    "active": true,
+    "description": "Specialized program to improve digestive health, reduce bloating, and optimize your microbiome.",
+    "duration": "8-week program",
+    "icon": "🦠",
+    "image": "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=600&h=400&fit=crop&q=80",
+    "longDescription": "Transform your gut health with our specialized optimization program. We address common digestive issues including IBS, bloating, constipation, and food sensitivities. Our approach includes comprehensive assessment, elimination diet protocols when appropriate, reintroduction strategies, and personalized probiotic recommendations. You'll learn which foods support your unique microbiome and receive guidance on stress management techniques that impact gut health. The program includes meal plans specifically designed for gut healing, supplement recommendations, and ongoing support to ensure lasting improvements in digestive comfort and overall health.",
+    "name": "Gut Health Optimization",
+    "price": 349.0,
+    "slug": "gut-health-optimization",
+    "sortOrder": 5
+  },
+  {
+    "active": true,
+    "description": "Expert guidance for transitioning to a plant-based diet while ensuring complete nutrition.",
+    "duration": "6-week program",
+    "icon": "🌱",
+    "image": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&h=400&fit=crop&q=80",
+    "longDescription": "Make the transition to plant-based eating smooth and sustainable with expert support. Whether you're going fully vegan or simply adding more plant foods to your diet, we'll ensure you meet all nutritional needs. Our program covers protein adequacy, vitamin B12, iron, calcium, omega-3 fatty acids, and other key nutrients. You'll receive meal plans, recipes, shopping guides, and strategies for dining out and social situations. We address common challenges like family meals, budget concerns, and meal prep. Learn to create delicious, satisfying plant-based meals that support optimal health and align with your values.",
+    "name": "Plant-Based Transition Support",
+    "price": 299.0,
+    "slug": "plant-based-transition-support",
+    "sortOrder": 6
+  },
+  {
+    "active": true,
+    "description": "Practical strategies for feeding the whole family nutritious meals that everyone will enjoy.",
+    "duration": "90 minutes",
+    "icon": "👨‍👩‍👧‍👦",
+    "image": "https://images.unsplash.com/photo-1511690656952-34342bb7c2f2?w=600&h=400&fit=crop&q=80",
+    "longDescription": "Simplify family meals while ensuring everyone gets the nutrition they need. Our family nutrition planning service addresses the unique challenges of feeding children and adults with different preferences and nutritional requirements. We provide age-appropriate portion guidance, picky eater strategies, meal prep tips for busy families, and budget-friendly healthy recipes. Learn to involve kids in meal planning and preparation, handle food allergies or sensitivities, and create positive mealtime environments. Includes family-friendly meal plans, kid-approved recipes, and strategies for reducing mealtime stress while improving nutrition for the whole family.",
+    "name": "Family Nutrition Planning",
+    "price": 225.0,
+    "slug": "family-nutrition-planning",
+    "sortOrder": 7
+  },
+  {
+    "active": true,
+    "description": "Customized nutrition education and wellness initiatives to improve employee health and productivity.",
+    "duration": "Custom package",
+    "icon": "💼",
+    "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop&q=80",
+    "longDescription": "Invest in your team's health with our comprehensive corporate wellness programs. We offer customized solutions including lunch-and-learn seminars, individual employee consultations, healthy snack programs, nutrition challenges, and ongoing wellness support. Topics cover stress management through nutrition, energy-boosting foods, meal prep for busy professionals, and disease prevention. Our programs are designed to improve employee engagement, reduce healthcare costs, and boost productivity. We provide metrics and reporting to track program success. Available for companies of all sizes, with flexible delivery options including on-site, virtual, or hybrid formats.",
+    "name": "Corporate Wellness Programs",
+    "price": 2500.0,
+    "slug": "corporate-wellness-programs",
+    "sortOrder": 8
+  },
+  {
+    "active": true,
+    "description": "Specialized nutrition support for pregnancy, breastfeeding, and postpartum recovery.",
+    "duration": "60 minutes",
+    "icon": "🤱",
+    "image": "https://images.unsplash.com/photo-1555252333-9f8e92e65df9?w=600&h=400&fit=crop&q=80",
+    "longDescription": "Nourish yourself and your baby with expert prenatal and postnatal nutrition guidance. Our specialized program addresses the unique nutritional needs during pregnancy, breastfeeding, and postpartum recovery. We cover optimal weight gain, managing pregnancy symptoms (nausea, heartburn, constipation), key nutrients for fetal development, and safe food choices. For breastfeeding mothers, we provide guidance on milk production, nutrition while nursing, and gradual postpartum weight loss. Learn meal planning strategies that work with new parent schedules, nutrient-dense quick meals, and how to support your recovery and energy levels during this demanding time.",
+    "name": "Prenatal & Postnatal Nutrition",
+    "price": 175.0,
+    "slug": "prenatal-postnatal-nutrition",
+    "sortOrder": 9
+  },
+  {
+    "active": true,
+    "description": "Nutrition strategies to support vitality, cognitive function, and disease prevention as you age.",
+    "duration": "60 minutes",
+    "icon": "👴",
+    "image": "https://images.unsplash.com/photo-1581579438747-1dc8d17bbce4?w=600&h=400&fit=crop&q=80",
+    "longDescription": "Age gracefully with nutrition strategies designed for optimal health in your golden years. Our healthy aging program addresses the unique nutritional needs of older adults, including maintaining muscle mass, bone health, cognitive function, and disease prevention. We focus on nutrient-dense foods that support energy levels, immune function, and overall vitality. Topics include managing chronic conditions through diet, medication-nutrient interactions, appetite changes, and adapting to physical limitations. You'll receive practical guidance on meal preparation, grocery shopping, and maintaining independence through good nutrition. Perfect for active seniors or those supporting aging loved ones.",
+    "name": "Healthy Aging Nutrition",
+    "price": 150.0,
+    "slug": "healthy-aging-nutrition",
+    "sortOrder": 10
+  }
+]

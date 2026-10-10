@@ -1,0 +1,51 @@
+{
+  "author": "DietAndWell",
+  "dependencies": {
+    "@nestjs/common": "^11.1.9",
+    "@nestjs/config": "^4.0.2",
+    "@nestjs/core": "^11.1.9",
+    "@nestjs/jwt": "^11.0.1",
+    "@nestjs/passport": "^11.0.5",
+    "@nestjs/platform-express": "^11.1.9",
+    "@nestjs/swagger": "^11.2.3",
+    "@nestjs/typeorm": "^11.0.0",
+    "@types/passport-jwt": "^4.0.1",
+    "bcrypt": "^6.0.0",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.3",
+    "dotenv": "^17.2.3",
+    "multer": "^2.0.2",
+    "nodemailer": "^7.0.10",
+    "passport-jwt": "^4.0.1",
+    "pg": "^8.16.3",
+    "reflect-metadata": "^0.2.2",
+    "stripe": "^20.0.0",
+    "typeorm": "^0.3.27"
+  },
+  "description": "DietAndWell Nutrition Portal Backend API",
+  "devDependencies": {
+    "@types/bcrypt": "^6.0.0",
+    "@types/multer": "^2.0.0",
+    "@types/node": "^20.19.25",
+    "@types/nodemailer": "^7.0.4",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.0.0"
+  },
+  "keywords": [
+    "nutrition",
+    "health",
+    "wellness",
+    "nestjs"
+  ],
+  "license": "MIT",
+  "main": "dist/src/main.js",
+  "name": "dietandwell-backend",
+  "scripts": {
+    "build": "tsc",
+    "dev": "ts-node-dev --respawn --transpile-only src/main.ts",
+    "seed": "ts-node-dev --transpile-only src/seed.ts",
+    "start": "node dist/src/main.js",
+    "start:prod": "node dist/src/main.js"
+  },
+  "version": "1.0.0"
+}

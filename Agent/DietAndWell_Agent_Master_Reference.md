@@ -1,0 +1,1019 @@
+# DietAndWell
+
+## Complete Website Revamp
+
+**Agent Implementation Master Reference**
+
+*Version 1.0 | April 2025*
+
+*Stack: React + CSS Custom Properties | Node.js + Express + PostgreSQL | Deployed: Vercel + Railway*
+
+---
+
+## Section 0 — How to Use This Document
+
+> **THIS IS THE SINGLE SOURCE OF TRUTH FOR ALL AGENTS.**
+> 
+> Read this entire document before writing a single line of code.
+> 
+> Every decision — design, component, API, database — is defined here.
+> 
+> Do not invent anything not specified. Do not skip phases. Follow the order exactly.
+
+### Document Structure
+
+| Section | Contents |
+|---------|----------|
+| 0 — This section | How to use this document |
+| 1 — Project Overview | Goals, tech stack, folder structure |
+| 2 — Design System | Colors, typography, spacing, component patterns |
+| 3 — Page Specifications | Every page: layout, sections, components, behaviour |
+| 4 — Component Library | Reusable React components with exact props |
+| 5 — Backend API | All endpoints, request/response shapes, DB schema |
+| 6 — Implementation Phases | Ordered task list with acceptance criteria |
+| 7 — 3D & Animation | Three.js / Spline / CSS 3D specs per page |
+| 8 — Deployment | Vercel + Railway setup, env vars, CI config |
+
+### Agent Rules
+
+- Always check this document before creating a new component, colour, or API endpoint.
+- All colour values are hex codes defined in Section 2. Use CSS variables — never hardcode hex in JSX.
+- All spacing uses the 8pt grid (multiples of 8px). No arbitrary spacing.
+- Bootstrap is REMOVED. All styling is custom CSS using CSS custom properties.
+- Every component is in `/frontend/src/components/`. No inline styles in JSX files.
+- TypeScript is used in the backend. JavaScript is used in the frontend.
+- Never add features not in this document without explicit user instruction.
+- After completing each phase task, verify against the Acceptance Criteria in Section 6.
+
+---
+
+## Section 1 — Project Overview
+
+### 1.1 Business Context
+
+| Property | Value |
+|----------|-------|
+| **Site name** | DietAndWell |
+| **Domain** | dietandwell.com |
+| **Owner** | Nutrition coach / personal brand |
+| **Primary goal** | Generate coaching client leads (book a call / contact form) |
+| **Target audience** | General public — weight loss, healthy eating, general wellness |
+| **Secondary goals** | Blog authority, calculator engagement, newsletter growth |
+| **Phase 3 goal** | E-commerce shop for meal plans, supplements, programs |
+
+### 1.2 Technology Stack
+
+| Layer | Technology |
+|-------|------------|
+| Frontend framework | React 18 (Vite) |
+| Frontend styling | Custom CSS with CSS Custom Properties (NO Bootstrap, NO Tailwind) |
+| 3D / Animation | Spline (hero), Three.js (particles), CSS 3D transforms (cards) |
+| Backend framework | Node.js + Express + TypeScript |
+| Database | PostgreSQL (local → Railway in production) |
+| ORM | pg (node-postgres) with raw SQL queries |
+| Authentication | JWT (jsonwebtoken) — admin panel only |
+| File uploads | Multer → Cloudinary (production) |
+| Email | Resend API (contact form + newsletter) |
+| Frontend deploy | Vercel |
+| Backend deploy | Railway |
+| Image CDN | Cloudinary (free tier) |
+
+### 1.3 Folder Structure
+
+The repository root contains two folders: `/frontend` and `/backend`. Do not move files between them.
+
+**FRONTEND STRUCTURE:**
+```
+frontend/
+  src/
+    components/     ← ALL reusable components live here
+      ui/           ← Generic UI: Button, Card, Badge, Input, Modal
+      layout/       ← Navbar, Footer, PageHero, SectionWrapper
+      sections/     ← Page-specific sections (HeroSection, ServiceCards...)
+      three/        ← Three.js and Spline wrapper components
+    pages/          ← One file per route
+    contexts/       ← React contexts (ThemeContext, AuthContext)
+    services/       ← api.js — all fetch calls
+    styles/
+      variables.css ← ALL CSS custom properties (colours, spacing, fonts)
+      globals.css   ← Reset + base styles
+      animations.css ← Keyframe animations
+    hooks/          ← Custom React hooks
+    utils/          ← Helper functions
+```
+
+**BACKEND STRUCTURE:**
+```
+backend/
+  src/
+    routes/         ← Express routers
+    controllers/    ← Business logic
+    middleware/     ← auth.ts, upload.ts, validate.ts
+    models/         ← DB query functions (no ORM)
+    config/         ← db.ts, email.ts, cloudinary.ts, env.ts
+    types/          ← TypeScript interfaces
+    public/uploads/ ← Local image storage (dev only)
+    dist/           ← Compiled output (do not edit)
+```
+
+---
+
+## Section 2 — Design System
+
+### 2.1 Design Philosophy
+
+> **DESIGN DIRECTION: 'Premium Wellness'** — Clean, minimal, modern with 3D depth accents.
+> 
+> Think: a premium health brand that feels credible, not a generic template.
+> 
+> Dark hero sections with glowing 3D elements. Light content sections with generous whitespace.
+> 
+> One serif heading font. One sans-serif body font. Two accent colours max per page.
+
+### 2.2 Colour Palette — CSS Custom Properties
+
+All colours are defined in `/frontend/src/styles/variables.css`. Use ONLY these variables in all CSS files.
+
+**PRIMARY PALETTE:**
+```css
+--color-primary: #0A6640;        /* Deep forest green — buttons, links, icons */
+--color-primary-dark: #054D30;   /* Hover state for primary */
+--color-primary-light: #E8F5EE;  /* Light green backgrounds, badges */
+--color-accent: #B45309;         /* Amber/gold — CTA buttons, highlights */
+--color-accent-light: #FEF3C7;   /* Light amber backgrounds */
+```
+
+**NEUTRAL PALETTE:**
+```css
+--color-dark: #0F172A;           /* Near-black — hero backgrounds */
+--color-dark-800: #1E293B;       /* Dark sections */
+--color-dark-700: #334155;       /* Footer, dark cards */
+--color-text-primary: #111827;   /* Body text on light backgrounds */
+--color-text-secondary: #374151; /* Secondary body text */
+--color-text-muted: #6B7280;     /* Captions, metadata */
+--color-bg-primary: #FFFFFF;     /* Main page background */
+--color-bg-secondary: #F9F6F0;   /* Off-white — warm section backgrounds */
+--color-bg-tertiary: #F3F4F6;    /* Card backgrounds */
+--color-border: #E5E7EB;         /* All borders */
+--color-border-dark: #D1D5DB;    /* Stronger borders */
+```
+
+**SEMANTIC COLOURS:**
+```css
+--color-success: #059669;
+--color-warning: #D97706;
+--color-error: #DC2626;
+--color-info: #2563EB;
+```
+
+### 2.3 Typography
+
+| Property | Value |
+|----------|-------|
+| Heading font | Playfair Display (Google Fonts) — loaded in index.html |
+| Body font | Inter (Google Fonts) — loaded in index.html |
+| Mono font | JetBrains Mono (code blocks only) |
+| Base size | 16px (1rem) |
+| Line height | 1.6 body, 1.2 headings |
+| Font scale | h1: 3.5rem \| h2: 2.5rem \| h3: 1.75rem \| h4: 1.25rem \| body: 1rem \| small: 0.875rem |
+
+**ADD TO index.html `<head>`:**
+```html
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+```
+
+**CSS TYPOGRAPHY VARIABLES:**
+```css
+--font-heading: 'Playfair Display', Georgia, serif;
+--font-body: 'Inter', -apple-system, sans-serif;
+--font-mono: 'JetBrains Mono', 'Courier New', monospace;
+```
+
+### 2.4 Spacing System (8pt Grid)
+
+All spacing values must be multiples of 8px. Use these CSS variables:
+
+```css
+--space-1: 4px    --space-2: 8px    --space-3: 12px
+--space-4: 16px   --space-5: 20px   --space-6: 24px
+--space-8: 32px   --space-10: 40px  --space-12: 48px
+--space-16: 64px  --space-20: 80px  --space-24: 96px
+--space-32: 128px
+```
+
+### 2.5 Border Radius
+
+```css
+--radius-sm: 4px      /* Tags, chips */
+--radius-md: 8px      /* Inputs, small cards */
+--radius-lg: 16px     /* Cards, panels */
+--radius-xl: 24px     /* Large cards, modal */
+--radius-full: 9999px /* Pills, badges */
+```
+
+### 2.6 Shadows & Depth
+
+3D depth is achieved through layered shadows. Use these variables:
+
+```css
+--shadow-sm: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+--shadow-md: 0 4px 16px rgba(0,0,0,0.10), 0 2px 6px rgba(0,0,0,0.07);
+--shadow-lg: 0 12px 40px rgba(0,0,0,0.14), 0 4px 12px rgba(0,0,0,0.08);
+--shadow-xl: 0 24px 64px rgba(0,0,0,0.18), 0 8px 24px rgba(0,0,0,0.10);
+--shadow-glow: 0 0 40px rgba(10,102,64,0.25);   /* Green glow — 3D elements */
+--shadow-amber: 0 0 30px rgba(180,83,9,0.20);   /* Amber glow — CTA hover */
+```
+
+### 2.7 CSS 3D Card Effect (Apply to All Service / Blog Cards)
+
+Every card on the site uses this CSS 3D tilt effect on hover. It is the primary 3D element throughout the site.
+
+```css
+.card-3d {
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  will-change: transform;
+}
+
+.card-3d:hover {
+  transform: perspective(1000px) rotateX(-4deg) rotateY(4deg) translateZ(8px);
+  box-shadow: var(--shadow-xl);
+}
+```
+
+### 2.8 Button Variants
+
+| Variant | Usage & CSS class |
+|---------|-------------------|
+| btn-primary | Dark green bg (#0A6640), white text — main CTAs |
+| btn-accent | Amber bg (#B45309), white text — urgent CTAs ('Book a Call') |
+| btn-outline | Transparent bg, green border — secondary actions |
+| btn-ghost | No border, no bg — nav links, text actions |
+| btn-dark | Dark bg (#1E293B), white text — use on light sections |
+
+**BUTTON BASE CSS:**
+```css
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-full);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 500;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+```
+
+---
+
+## Section 3 — Page Specifications
+
+### 3.1 Global Components (Appear on Every Page)
+
+**Top Bar**
+- Background: `var(--color-primary)` #0A6640
+- Content: email left | phone | WhatsApp | social icons right
+- Font size: 0.8rem, white text
+- Height: 40px
+- Remove on mobile (display:none below 768px)
+
+**Navbar**
+- Background: rgba(255,255,255,0.95) with `backdrop-filter: blur(12px)`
+- Position: sticky top:0, z-index:1000
+- Logo: 'Diet &Well' in Playfair Display — Diet in `--color-primary`, &Well in `--color-dark`
+- Nav links: Inter 0.9rem, `--color-text-secondary`, hover: `--color-primary`
+- Login button: btn-outline (small)
+- Sign Up button: btn-primary (small)
+- On scroll past 80px: add box-shadow `var(--shadow-md)`
+- Mobile: hamburger menu, slide-in drawer from right
+
+**Footer**
+- Background: `var(--color-dark)` #0F172A
+- 4-column layout: About Us | Quick Links | Services | Contact
+- Section headings: `--color-primary`, Inter 600
+- Link text: #9CA3AF, hover: white
+- Bottom bar: 1px border top (#1E293B), 'Made with heart for your wellness journey' centered
+- The thin amber/yellow stripe above the footer is REMOVED in the new design
+
+### 3.2 Home Page
+
+**Route:** `/`
+
+**File:** `/frontend/src/pages/Home.jsx`
+
+**Section 1 — Hero (3D)**
+- Full viewport height (100vh)
+- Background: dark gradient — `linear-gradient(135deg, #0F172A 0%, #054D30 60%, #0A6640 100%)`
+- LEFT SIDE (60% width): Headline + sub + CTAs
+  - Headline: 'Transform Your Health With Smart Nutrition' — Playfair Display, 3.5rem, white
+  - Subheadline: 1.1rem Inter, #9CA3AF, max-width 480px
+  - CTA 1: btn-accent 'Book a Free Call' — links to /contact
+  - CTA 2: btn-outline white 'Explore Services' — links to /services
+  - Trust badges row below CTAs: '666+ Clients' | '13% Avg. Fat Loss' | '2+ Years' | '26+ Articles'
+- RIGHT SIDE (40% width): Spline 3D embed — floating nutrition sphere/molecule
+  - Spline embed: `<SplineEmbed scene='...' />` — see Section 7 for Spline setup
+  - Fallback if Spline fails: animated CSS 3D orb with green glow
+- Scroll indicator: animated chevron at bottom center
+
+**Section 2 — Image Carousel**
+- Keep existing carousel — restyle with new dark/green theme
+- Remove Bootstrap carousel. Use custom CSS + JS (or react-slick)
+- Dots: green (#0A6640). Arrows: white on dark semi-transparent buttons
+
+**Section 3 — Free Health Calculators**
+- Background: `var(--color-bg-secondary)` #F9F6F0
+- Section heading: 'Free Health Calculators' — h2, centered
+- 4-column grid of calculator cards (BMI, Calories, Body Fat, Ideal Weight)
+- Each card: white bg, `var(--shadow-md)`, card-3d class, icon + name + short desc + 'Calculate Now' btn-outline
+- 'View All Calculators' button centered below grid — btn-primary
+
+**Section 4 — Nutrition Powerhouses**
+- Background: white
+- 6-item grid: Chia Seeds | Almonds | Greek Yogurt | Blueberries | Spinach | Salmon
+- Each item: circular image (80px) + name + 1-line benefit
+- Hover: scale(1.05) + green glow shadow
+
+**Section 5 — Learn About Healthy Nutrition (Blog Preview)**
+- Background: `var(--color-primary-light)` #E8F5EE
+- Left: Large featured article card (image + title + excerpt + Read More)
+- Right: 2 smaller article cards stacked
+- All cards: card-3d class, white bg, `var(--shadow-sm)`
+- 'View All Articles' btn-outline aligned right
+
+**Section 6 — Our Wellness Services**
+- Background: white
+- 4 service cards in a row (first 4 services only, not all 10)
+- Each card: card-3d, icon, name, price, duration, 'Learn More' btn-ghost
+- 'Explore All Services' btn-primary centered below
+
+**Section 7 — Impact Stats (Dark Section)**
+- Background: `var(--color-dark)` #0F172A
+- 4 stats in a row: 666+ Clients | 13% Fat Loss | 2+ Years | 26+ Articles
+- Each stat: animated counter (count up on scroll into view)
+- Number: Playfair Display 3rem white. Label: Inter 0.9rem #9CA3AF
+
+**Section 8 — Success Stories (Testimonials)**
+- Background: `var(--color-bg-secondary)`
+- 3 testimonial cards with avatar initials, 5-star rating, quote, name
+- Cards: card-3d, white bg
+
+**Section 9 — Latest Nutrition Insights (Blog)**
+- 3 most recent blog posts fetched from API (GET /api/blogs?limit=3)
+- Same blog card component as blog page
+
+**Section 10 — Newsletter**
+- Background: linear-gradient from `--color-primary` to `--color-primary-dark`
+- White text. Email input + 'Subscribe' btn-accent
+- POST /api/newsletter/subscribe on submit
+
+**Section 11 — Final CTA**
+- Background: `var(--color-dark)`
+- 'Ready to Start Your Health Journey?' headline in Playfair Display white
+- Two buttons: btn-accent 'Get Started Today' | btn-outline white 'Try Free Tools'
+
+### 3.3 Services Page
+
+**Route:** `/services`
+
+**File:** `/frontend/src/pages/Services.jsx`
+
+**Section 1 — Page Hero**
+- Background: dark gradient (same as home hero but shorter — 50vh)
+- Title: 'Our Services' — Playfair Display 3rem white
+- Subtitle: 'Comprehensive wellness solutions tailored for you'
+- NO stock photo background — pure gradient
+
+**Section 2 — Services Grid**
+- Remove the current stock photo behind 'Our Services' heading
+- 3-column responsive grid (3 cols desktop, 2 tablet, 1 mobile)
+- ALL 10 existing services displayed
+- Each card: card-3d, white bg, `--shadow-md`, border-radius `var(--radius-lg)`
+  - Icon (48x48): green icon bg, centered top of card
+  - Title: h4, Playfair Display, `--color-text-primary`
+  - Description: Inter 0.9rem, `--color-text-secondary`
+  - Price: Playfair Display 1.3rem `--color-primary`, bold
+  - Duration/package: Inter 0.8rem `--color-text-muted`
+  - 'Learn More' btn-outline: full width, bottom of card
+- Card hover: translateZ(8px), green glow shadow, border color `--color-primary`
+
+**Section 3 — Process / How It Works**
+- NEW SECTION — 3 steps: 'Book a Call' → 'Get Your Plan' → 'Transform'
+- Background: `var(--color-bg-secondary)`
+- 3 steps with numbered circles (green), connected by a horizontal line
+
+**Section 4 — Bottom CTA**
+- 'Ready to transform your health?' — btn-accent 'Book a Free Consultation'
+
+### 3.4 Blog Page
+
+**Route:** `/blog`
+
+**File:** `/frontend/src/pages/Blog.jsx`
+
+**Section 1 — Page Hero**
+- 50vh dark gradient hero — same style as Services
+- Title: 'Nutrition & Wellness Blog' — Playfair Display white
+- Subtitle: 'Evidence-based articles...'
+- Remove the notebook stock photo background
+
+**Section 2 — Search & Filter Bar**
+- Centered search input (max-width 500px)
+- Category filter pills below: All | Weight Loss | Gut Health | Nutrition | Wellness | Mental Health
+- Active filter pill: `--color-primary` bg, white text
+- Search filters client-side on the fetched data
+
+**Section 3 — Blog Grid**
+- Fetch from GET /api/blogs (published only)
+- 3-column responsive grid
+- Each BlogCard: card-3d, white bg, `--shadow-sm`
+  - Cover image (16:9, object-fit: cover, height 200px)
+  - Category badge: `--color-primary-light` bg, `--color-primary` text
+  - Title: h4 Playfair Display
+  - Excerpt: truncated to 2 lines (line-clamp: 2)
+  - Meta row: 'By [author] • [date] • [views] views'
+  - Tags: small green pill badges
+  - 'Read More →' link: `--color-primary`
+- Empty state: 'No articles found. Try a different search.'
+
+### 3.5 Single Blog Post Page
+
+**Route:** `/blog/:slug`
+
+**File:** `/frontend/src/pages/BlogPost.jsx`
+
+- Fetch from GET /api/blogs/:slug
+- Hero: cover image full width, 400px height, object-fit cover, dark overlay
+- Content area: max-width 740px, centered, generous line-height 1.8
+- Heading font: Playfair Display. Body: Inter 1.05rem
+- Author + date + read time (estimate: wordcount / 200 mins) below title
+- Tags displayed below content
+- Related posts (same category): 3 cards below
+- Back to Blog link: top left
+
+### 3.6 Calculators Page
+
+**Route:** `/calculators`
+
+**File:** `/frontend/src/pages/Calculators.jsx`
+
+**Layout**
+- Left sidebar (240px): Calculator navigation list
+- Right main area: Active calculator form
+- Mobile: Stack vertically (sidebar becomes horizontal scroll tabs)
+
+**Calculators to Implement (in order)**
+
+| Calculator | Inputs Required |
+|------------|-----------------|
+| BMI Calculator | Weight (kg/lbs), Height (cm/ft), Unit toggle |
+| Calorie Calculator (TDEE) | Age, Gender, Weight, Height, Activity Level |
+| Body Fat Percentage | Gender, Waist, Neck, Height (for women: Hip) |
+| Ideal Weight | Gender, Height |
+| Water Intake | Weight, Activity Level, Climate |
+| Macro Split | Total calories, Goal (lose/maintain/gain), Diet style |
+
+**Results Display**
+- Results panel slides in below the calculate button
+- Animated counter — number counts up from 0 to result (600ms duration)
+- For macro splits: doughnut chart using Chart.js — Protein (blue) | Carbs (green) | Fat (amber)
+- Result interpretation: colour-coded badge — e.g. BMI: Underweight (blue) | Normal (green) | Overweight (amber) | Obese (red)
+- 'Save Results' button: opens email modal, sends result to user via POST /api/calculators/save
+- All calculations are done client-side in pure JavaScript. No backend call needed for the calculation itself.
+
+### 3.7 Contact Page
+
+**Route:** `/contact`
+
+**File:** `/frontend/src/pages/Contact.jsx`
+
+**Section 1 — Page Hero**
+- 50vh dark gradient (no stock photo of hands/keyboard)
+- Title: 'Get In Touch' — Playfair Display white
+
+**Section 2 — Contact Layout (Two Columns)**
+- LEFT COLUMN (40%): Contact info cards
+  - Email card: icon + 'contact@dietandwell.com'
+  - Phone card: icon + '+92-339-4056390'
+  - WhatsApp card: icon + 'Chat with us' — opens wa.me link
+  - Each card: card-3d, white bg, hover lifts
+- RIGHT COLUMN (60%): Contact form
+  - Fields: Full Name, Email, Phone (optional), Message (textarea)
+  - Submit button: btn-accent full-width 'Send Message'
+  - On submit: POST /api/contact — show success toast or error message
+  - Form validation: required fields + email format check
+
+### 3.8 Login & Sign Up Pages
+
+**Login route:** `/login` → `/frontend/src/pages/Login.jsx`
+
+**Signup route:** `/signup` → `/frontend/src/pages/Signup.jsx`
+
+**Layout**
+- Full page: dark gradient background (same as hero)
+- Center: glass morphism card — white bg, 20% opacity, `backdrop-filter:blur(20px)`, white border 1px
+- Remove the large empty white space above the form (current issue visible in screenshots)
+- The card should be vertically centered in the viewport with padding-top for navbar
+
+**Form Styling**
+- Inputs: white bg, 1px border `--color-border`, border-radius `var(--radius-md)`, padding 12px 16px
+- Focus state: border-color `--color-primary`, box-shadow 0 0 0 3px rgba(10,102,64,0.15)
+- Submit button: btn-primary full width
+- 'Login here' / 'Register here' link: `--color-primary`
+
+### 3.9 Admin Panel
+
+**Route:** `/admin` (protected — requires JWT)
+
+**File:** `/frontend/src/pages/Admin.jsx`
+
+- Sidebar navigation: Dashboard | Blog Posts | Contact Leads | Newsletter Subscribers
+- Blog list: table with title, status (published/draft), date, Edit / Delete actions
+- Blog editor: rich text editor (use React-Quill or TipTap)
+  - Fields: Title, Slug (auto-generated from title, editable), Excerpt, Content, Cover Image upload, Category, Tags, Published toggle
+- Contact leads table: name, email, phone, message, date
+- All admin routes protected by verifyJWT middleware on the backend
+
+---
+
+## Section 4 — Component Library
+
+### 4.1 Core UI Components
+
+Location: `/frontend/src/components/ui/`
+
+| Component | File | Props |
+|-----------|------|-------|
+| Button | Button.jsx | variant, size, children, onClick, href, disabled |
+| Card | Card.jsx | children, className, hover3d (bool), onClick |
+| Badge | Badge.jsx | children, variant (default/primary/success/warning/error) |
+| Input | Input.jsx | label, type, value, onChange, error, placeholder, required |
+| Textarea | Textarea.jsx | label, value, onChange, error, rows |
+| Modal | Modal.jsx | isOpen, onClose, title, children |
+| Toast | Toast.jsx | message, type (success/error/info), onClose |
+| Spinner | Spinner.jsx | size (sm/md/lg), color |
+| Avatar | Avatar.jsx | initials, size, color |
+
+### 4.2 Layout Components
+
+Location: `/frontend/src/components/layout/`
+
+| Component | Props | Notes |
+|-----------|-------|-------|
+| Navbar | none | Reads auth state from AuthContext |
+| Footer | none | Static — update links when new pages added |
+| PageHero | title, subtitle, height ('full'/'half'), bgImage | dark gradient overlay on image |
+| SectionWrapper | children, bg, padding, id | bg: 'white'/'secondary'/'dark'/'primary' |
+| TopBar | none | Hidden on mobile |
+| Container | children, maxWidth | Default maxWidth: 1200px |
+
+### 4.3 Section Components
+
+Location: `/frontend/src/components/sections/`
+
+| Component | Props | Notes |
+|-----------|-------|-------|
+| HeroSection | headline, subheadline, cta1, cta2, showSpline | Home page hero only |
+| ServiceCard | service {name,price,icon,desc,duration} | Used on Home + Services |
+| BlogCard | post {title,slug,excerpt,cover,tags,date,views} | Used on Home + Blog |
+| CalculatorCard | name, icon, description, onClick | Clickable — sets active calc |
+| StatCounter | value, label, suffix | Counts up on scroll into view |
+| TestimonialCard | quote, author, role, rating | card-3d |
+| NutritionItem | name, image, benefit | Circular image + name + benefit |
+| ProcessStep | number, title, description | For How It Works section |
+
+---
+
+## Section 5 — Backend API
+
+### 5.1 Database Schema
+
+PostgreSQL. Run these CREATE TABLE statements in order. Location: `/backend/src/config/schema.sql`
+
+```sql
+CREATE TABLE admin_users (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  email VARCHAR(255) UNIQUE NOT NULL,
+  password_hash VARCHAR(255) NOT NULL,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE TABLE blogs (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  title VARCHAR(500) NOT NULL,
+  slug VARCHAR(500) UNIQUE NOT NULL,
+  content TEXT NOT NULL,
+  excerpt VARCHAR(1000),
+  cover_image VARCHAR(1000),
+  category VARCHAR(100),
+  tags TEXT[] DEFAULT '{}',
+  author VARCHAR(255) DEFAULT 'Admin',
+  views INTEGER DEFAULT 0,
+  published BOOLEAN DEFAULT FALSE,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE TABLE contacts (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  full_name VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  phone VARCHAR(50),
+  message TEXT NOT NULL,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE TABLE subscribers (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  email VARCHAR(255) UNIQUE NOT NULL,
+  confirmed BOOLEAN DEFAULT FALSE,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+```
+
+### 5.2 API Endpoints
+
+Base URL in development: `http://localhost:5000/api`
+
+Base URL in production: set in frontend/.env as `VITE_API_URL`
+
+**PUBLIC ENDPOINTS (no auth required):**
+
+| Method + Path | Description |
+|---------------|-------------|
+| GET /blogs | Returns all published blogs. Query params: ?limit=N&category=X&search=Q |
+| GET /blogs/:slug | Returns single blog, increments view count by 1 |
+| POST /contact | Body: {fullName, email, phone?, message} — saves to DB + sends email |
+| POST /newsletter/subscribe | Body: {email} — saves subscriber |
+| POST /calculators/save | Body: {email, type, result} — emails result to user |
+
+**ADMIN ENDPOINTS (JWT required — header: Authorization: Bearer <token>):**
+
+| Method + Path | Description |
+|---------------|-------------|
+| POST /admin/login | Body: {email, password} — returns JWT token |
+| GET /admin/blogs | Returns ALL blogs (including drafts) |
+| POST /admin/blogs | Create blog — body: full blog object |
+| PUT /admin/blogs/:id | Update blog |
+| DELETE /admin/blogs/:id | Delete blog |
+| POST /admin/upload | Multipart form — uploads image, returns {url} |
+| GET /admin/contacts | Returns all contact form submissions |
+| GET /admin/subscribers | Returns all newsletter subscribers |
+
+### 5.3 Environment Variables
+
+Create these files. Never commit them to git.
+
+**FILE: `/backend/.env`**
+```
+PORT=5000
+DATABASE_URL=postgresql://user:pass@localhost:5432/dietandwell
+JWT_SECRET=your_random_secret_min_32_chars
+JWT_EXPIRES_IN=7d
+RESEND_API_KEY=re_xxxxxxxxxxxx
+FROM_EMAIL=noreply@dietandwell.com
+ADMIN_EMAIL=contact@dietandwell.com
+CLOUDINARY_CLOUD_NAME=your_cloud
+CLOUDINARY_API_KEY=your_key
+CLOUDINARY_API_SECRET=your_secret
+NODE_ENV=development
+```
+
+**FILE: `/frontend/.env`**
+```
+VITE_API_URL=http://localhost:5000/api
+VITE_SPLINE_URL=https://prod.spline.design/your-scene-url/scene.splinecode
+```
+
+---
+
+## Section 6 — Implementation Phases
+
+> **AGENT INSTRUCTION: Complete tasks in order. Do not start Phase 2 until ALL Phase 1 acceptance criteria are met. Mark each task complete before moving to the next.**
+
+### Phase 1 — Foundation & Design System (Week 1)
+
+**Goal: Remove Bootstrap. Establish the new design system. All global components done.**
+
+1. Remove Bootstrap from package.json and all import statements
+2. Create `/frontend/src/styles/variables.css` with ALL values from Section 2
+3. Create `/frontend/src/styles/globals.css` — reset, base body styles, font imports
+4. Create `/frontend/src/styles/animations.css` — all keyframe animations
+5. Rebuild Navbar component per Section 3.1 spec
+6. Rebuild Footer component per Section 3.1 spec
+7. Rebuild TopBar component per Section 3.1 spec
+8. Build all UI components from Section 4.1 (Button, Card, Badge, Input, Textarea, Toast)
+9. Build layout components from Section 4.2 (PageHero, SectionWrapper, Container)
+10. Verify: run dev server, check all components render correctly with new styles
+
+**Phase 1 Acceptance Criteria:**
+- Zero Bootstrap classes in the codebase (grep -r 'btn-primary' src/ returns nothing related to Bootstrap)
+- All Section 2 CSS variables defined and used
+- Navbar is sticky, has blur effect, mobile hamburger works
+- Footer renders with dark background and 4 columns
+
+### Phase 2 — Core Pages (Week 2–3)
+
+**Goal: Home, Services, Contact pages fully rebuilt. Backend contact form working.**
+
+11. Backend: Set up Express server, DB connection (check existing /backend/src/config/db.ts)
+12. Backend: Run schema.sql to create all tables
+13. Backend: Build POST /api/contact endpoint with email via Resend
+14. Backend: Build GET /api/blogs and GET /api/blogs/:slug endpoints
+15. Frontend: Rebuild Home page all 11 sections per Section 3.2
+16. Frontend: Rebuild Services page per Section 3.3
+17. Frontend: Rebuild Contact page per Section 3.7 (two-column layout)
+18. Frontend: Rebuild Login and Signup pages per Section 3.8 (fix the large empty space issue)
+19. Frontend: Connect contact form to POST /api/contact
+20. Verify: Contact form submits, email arrives, success toast shows
+
+### Phase 3 — Blog & Calculators (Week 3–4)
+
+**Goal: Blog listing, single post, all 6 calculators. Admin panel for blog management.**
+
+21. Frontend: Build Blog listing page per Section 3.4
+22. Frontend: Build BlogPost single page per Section 3.5
+23. Frontend: Build Calculators page with all 6 calculators per Section 3.6
+24. Frontend: Chart.js integration for macro split doughnut chart
+25. Backend: POST /admin/login with JWT
+26. Backend: All admin blog CRUD endpoints
+27. Backend: Image upload endpoint (Multer → Cloudinary)
+28. Frontend: Build Admin panel per Section 3.9
+29. Frontend: Rich text editor (React-Quill) in blog editor
+30. Verify: Create a blog post in admin, publish it, view it on blog page
+
+### Phase 4 — 3D & Animations (Week 4)
+
+**Goal: Add all 3D effects and animations per Section 7.**
+
+31. CSS 3D card tilts — apply .card-3d class to all cards
+32. Scroll reveal animations — IntersectionObserver on all sections
+33. StatCounter components — count up animation on scroll into view
+34. Spline 3D embed in home hero (or CSS fallback orb if Spline not ready)
+35. Three.js particle background option (Section 7 — optional enhancement)
+36. Verify: All animations work on mobile (reduce-motion respected)
+
+### Phase 5 — Newsletter & Deploy (Week 5)
+
+**Goal: Site is live on Vercel + Railway with custom domain.**
+
+37. Backend: POST /api/newsletter/subscribe endpoint
+38. Frontend: Newsletter form on Home and Blog pages wired up
+39. Deploy backend to Railway — set all .env variables in Railway dashboard
+40. Deploy frontend to Vercel — set VITE_API_URL to Railway backend URL
+41. Configure custom domain in Vercel
+42. Test all forms and API calls on production URLs
+43. Set up Cloudinary for image uploads in production
+44. Verify: Full smoke test — browse all pages, submit contact form, create + publish a blog post
+
+---
+
+## Section 7 — 3D & Animation Specifications
+
+### 7.1 CSS 3D Card Tilt (Priority — implement first)
+
+Apply to: ALL service cards, blog cards, calculator cards, testimonial cards, contact info cards.
+
+```css
+/* In variables.css */
+--perspective: 1000px;
+
+/* In globals.css or component CSS */
+.card-3d {
+  transform-style: preserve-3d;
+  transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1),
+              box-shadow 0.35s ease;
+  will-change: transform;
+}
+
+.card-3d:hover {
+  transform: perspective(var(--perspective))
+             rotateX(-4deg) rotateY(6deg) translateZ(12px);
+  box-shadow: var(--shadow-xl), var(--shadow-glow);
+}
+```
+
+### 7.2 Scroll Reveal Animation
+
+Apply to all section content using IntersectionObserver. No library needed.
+
+```css
+/* In animations.css */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.reveal { opacity: 0; }
+
+.reveal.visible {
+  animation: fadeInUp 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+```
+
+```javascript
+/* In a useReveal hook: */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { 
+    if (e.isIntersecting) e.target.classList.add('visible'); 
+  });
+}, { threshold: 0.15 });
+```
+
+### 7.3 Stat Counter Animation
+
+```javascript
+/* Count up from 0 to target when element enters viewport */
+function animateCounter(el, target, duration = 1500) {
+  let start = 0;
+  const step = (timestamp) => {
+    if (!start) start = timestamp;
+    const progress = Math.min((timestamp - start) / duration, 1);
+    el.textContent = Math.floor(progress * target);
+    if (progress < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+```
+
+### 7.4 Spline 3D Hero Element
+
+Spline is a web-based 3D design tool. The embed is an iframe or React component.
+
+- Go to spline.design — create a free account
+- Design or use a template: floating DNA helix, or fruit/bowl/leaf organic shape
+- Recommend: search Spline community for 'nutrition' or 'health' scenes
+- Export → Get embed link → copy the scene URL
+- Paste URL into frontend/.env as VITE_SPLINE_URL
+- Install: `npm install @splinetool/react-spline`
+
+**COMPONENT CODE (`/frontend/src/components/three/SplineEmbed.jsx`):**
+```jsx
+import Spline from '@splinetool/react-spline';
+
+export default function SplineEmbed({ scene }) {
+  return (
+    <div style={{ width:'100%', height:'100%', minHeight:'400px' }}>
+      <Spline scene={scene} />
+    </div>
+  );
+}
+```
+
+**CSS FALLBACK ORB (if Spline URL not yet set):**
+```css
+@keyframes float { 
+  0%,100% { transform: translateY(0) } 
+  50% { transform: translateY(-20px) } 
+}
+
+@keyframes pulse { 
+  0%,100% { box-shadow: 0 0 40px 10px rgba(10,102,64,0.3) } 
+  50% { box-shadow: 0 0 80px 20px rgba(10,102,64,0.6) } 
+}
+
+.hero-orb {
+  width: 320px; 
+  height: 320px; 
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #1a9464, #054D30, #0a1628);
+  animation: float 4s ease-in-out infinite, pulse 4s ease-in-out infinite;
+}
+```
+
+### 7.5 @media prefers-reduced-motion
+
+CRITICAL: Wrap all animations in this media query check to respect accessibility:
+
+```css
+@media (prefers-reduced-motion: reduce) {
+  .card-3d:hover { transform: none; }
+  .reveal { opacity: 1; animation: none; }
+  .hero-orb { animation: none; }
+  * { 
+    transition-duration: 0.01ms !important; 
+    animation-duration: 0.01ms !important; 
+  }
+}
+```
+
+---
+
+## Section 8 — Deployment
+
+### 8.1 Pre-Deployment Checklist
+
+- [ ] All .env values set in Railway and Vercel dashboards
+- [ ] CORS configured in backend to allow the Vercel domain
+- [ ] Images served via Cloudinary (not public/uploads)
+- [ ] JWT_SECRET is a strong random string (min 32 chars)
+- [ ] Admin user seeded in admin_users table via a one-time script
+- [ ] All console.log statements removed from production code
+
+### 8.2 Vercel (Frontend)
+
+45. Push `/frontend` to GitHub (separate repo OR monorepo with root dir setting)
+46. Connect repo to vercel.com — import project
+47. Root directory: `frontend/`
+48. Build command: `npm run build`
+49. Output directory: `dist`
+50. Add environment variable: `VITE_API_URL = https://your-railway-app.up.railway.app/api`
+51. Add custom domain in Vercel → Settings → Domains
+
+### 8.3 Railway (Backend + PostgreSQL)
+
+52. Create Railway account at railway.app
+53. New project → Deploy from GitHub → select `/backend`
+54. Add PostgreSQL plugin to the same project
+55. Copy DATABASE_URL from PostgreSQL plugin → set as env var in backend service
+56. Set all backend .env variables in Railway Variables tab
+57. Railway auto-detects Node.js — set start command: `npm start`
+58. After deploy: run schema.sql manually via Railway PostgreSQL shell
+59. Seed admin user: `INSERT INTO admin_users VALUES (gen_random_uuid(), 'your@email.com', '<bcrypt_hash>');`
+
+### 8.4 CORS Configuration
+
+In `/backend/src/index.ts` (or app.ts):
+
+```typescript
+import cors from 'cors';
+
+app.use(cors({
+  origin: [
+    'http://localhost:5173',      // Vite dev server
+    'https://dietandwell.com',    // Production
+    'https://www.dietandwell.com',
+    process.env.FRONTEND_URL || '', // Set in Railway vars
+  ],
+  credentials: true,
+}));
+```
+
+---
+
+## Appendix — Quick Reference
+
+### A.1 Key File Locations
+
+| What | Where |
+|------|-------|
+| All CSS variables | `/frontend/src/styles/variables.css` |
+| Global styles | `/frontend/src/styles/globals.css` |
+| All API calls | `/frontend/src/services/api.js` |
+| DB schema | `/backend/src/config/schema.sql` |
+| JWT middleware | `/backend/src/middleware/auth.ts` |
+| Email config | `/backend/src/config/email.ts` |
+| Image upload | `/backend/src/middleware/upload.ts` |
+| Backend entry | `/backend/src/index.ts` |
+| Frontend entry | `/frontend/src/main.jsx` |
+
+### A.2 npm Packages to Install
+
+**FRONTEND** (run in `/frontend`):
+```bash
+npm install @splinetool/react-spline react-quill chart.js react-chartjs-2
+npm install react-router-dom react-hot-toast
+```
+
+**BACKEND** (run in `/backend`):
+```bash
+npm install express cors helmet morgan jsonwebtoken bcryptjs
+npm install multer cloudinary resend dotenv pg
+npm install --save-dev typescript ts-node nodemon @types/express @types/node @types/pg
+```
+
+### A.3 What NOT to Do
+
+> **Do NOT use Bootstrap classes anywhere.**
+> 
+> Do NOT hardcode hex colors in JSX or component CSS — always use CSS variables.
+> 
+> Do NOT store images in /backend/public/uploads in production — use Cloudinary.
+> 
+> Do NOT commit .env files to git — they must be in .gitignore.
+> 
+> Do NOT build the Shop page until explicitly instructed by the user.
+> 
+> Do NOT add features not defined in this document without user approval.
+> 
+> Do NOT use inline styles in JSX — all styles go in CSS files.
+
+---
+
+*--- End of Document ---*
+
+*DietAndWell Revamp Master Reference v1.0 | Generated April 2025*

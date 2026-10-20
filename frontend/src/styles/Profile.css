@@ -1,0 +1,9 @@
+/* Shim: forwards to combined profile-subscriptions stylesheet */
+@import './profile-subscriptions.css';
+
+/* Profile helpers (replacing inline styles + mock-data cards). */
+.profile-card-spaced { margin-top: var(--space-5); }
+.profile-card-narrow { max-width: 560px; }
+.profile-card-lead { color: var(--color-on-surface-variant); margin-bottom: var(--space-4); font-size: var(--text-body-md); }
+.profile-empty-text { color: var(--color-on-surface-variant); margin-bottom: var(--space-4); }
+.settings-notice { color: var(--color-warning); font-size: 0.9rem; }

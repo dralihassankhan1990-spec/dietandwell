@@ -1,0 +1,7 @@
+import { useEffect, useRef } from 'react';
+import '../styles/studio-meal-scene.css';
+export default function StudioMealScene(){
+ const ref=useRef(null);
+ useEffect(()=>{const el=ref.current,track=el.closest('.studio-hero-track'),motion=matchMedia('(prefers-reduced-motion: reduce)');let frame=0;const update=()=>{frame=0;const r=track.getBoundingClientRect();const p=Math.max(0,Math.min(1,-r.top/Math.max(1,r.height-innerHeight)));el.style.setProperty('--open',motion.matches?'0':(Math.sin(Math.PI*p)**1.4).toFixed(4));};const schedule=()=>{if(!frame)frame=requestAnimationFrame(update);};addEventListener('scroll',schedule,{passive:true});addEventListener('resize',schedule);motion.addEventListener('change',schedule);update();return()=>{cancelAnimationFrame(frame);removeEventListener('scroll',schedule);removeEventListener('resize',schedule);motion.removeEventListener('change',schedule);};},[]);
+ return <div className="studio-meal-scene" ref={ref} role="img" aria-label="A balanced meal, water, wholegrains and fresh produce separate in depth and return together as you scroll"><div className="studio-meal-orbit"/>{[['meal',0,0,0,-65,-12],['water',100,0,100,-160,15],['grains',0,100,-140,100,-20],['produce',100,100,130,90,18]].map(([name,x,y,dx,dy,turn])=><span key={name} className={`studio-meal-part studio-meal-part--${name}`} style={{backgroundPosition:`${x}% ${y}%`,'--x':`${dx}px`,'--y':`${dy}px`,'--turn':`${turn}deg`}}/>)}<div className="studio-meal-caption">A COMPLETE PICTURE OF NOURISHMENT<br/><em>Every component has a place.</em></div></div>;
+}

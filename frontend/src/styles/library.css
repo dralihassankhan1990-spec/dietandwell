@@ -1,0 +1,42 @@
+/* My Library — Modification Round 1.
+   Design system: Playfair Display + Inter, #0A6640 / #B45309. No emojis. */
+
+.lib-page { background: var(--color-bg-primary); padding: var(--space-12) 0 var(--space-16); min-height: 60vh; }
+.lib-header { margin-bottom: var(--space-8); }
+.lib-title { font-family: var(--font-heading); font-size: clamp(2rem, 4.5vw, 3rem); color: var(--color-text-primary); margin: 0 0 var(--space-2); }
+.lib-sub { color: var(--color-text-muted); margin: 0; }
+
+.lib-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: var(--space-6); }
+.lib-card { background: #fff; border: 1px solid var(--color-border); border-radius: var(--radius-md); overflow: hidden; display: flex; flex-direction: column; box-shadow: var(--shadow-sm); }
+.lib-card-link { text-decoration: none; display: block; }
+.lib-card-media { aspect-ratio: 16 / 9; position: relative; background: linear-gradient(135deg, #0A6640, #B45309); }
+.lib-card-media .safeimg { width: 100%; height: 100%; }
+.lib-card-body { padding: var(--space-5); display: flex; flex-direction: column; gap: var(--space-2); flex: 1; }
+.lib-card-name { font-family: var(--font-heading); font-size: 1.1rem; color: var(--color-text-primary); margin: 0; }
+.lib-card-date { font-size: 0.82rem; color: var(--color-text-muted); margin: 0; }
+
+.lib-status { align-self: flex-start; font-size: 0.75rem; font-weight: 700; padding: 5px 12px; border-radius: var(--radius-full); text-transform: uppercase; letter-spacing: 0.06em; }
+.lib-status-granted { background: #D1FAE5; color: #065F46; }
+.lib-status-pending { background: #FEF3C7; color: #92400E; }
+.lib-status-rejected { background: #FEE2E2; color: #991B1B; }
+
+.lib-download-btn {
+  margin-top: var(--space-3);
+  background: var(--color-primary); color: #fff; border: none;
+  border-radius: var(--radius-sm); padding: 12px 20px;
+  font-weight: 700; font-size: 0.92rem; cursor: pointer;
+  transition: background var(--transition-fast);
+}
+.lib-download-btn:hover:not(:disabled) { background: var(--color-primary-dark); }
+.lib-download-btn:disabled { background: var(--color-border-dark); cursor: wait; }
+
+.lib-shop-btn {
+  display: inline-block; margin-top: var(--space-4);
+  background: var(--color-primary); color: #fff; text-decoration: none;
+  border-radius: var(--radius-full); padding: 12px 28px; font-weight: 700;
+}
+.lib-shop-btn:hover { background: var(--color-primary-dark); }
+
+@media (prefers-reduced-motion: reduce) {
+  .lib-download-btn { transition: none !important; }
+}

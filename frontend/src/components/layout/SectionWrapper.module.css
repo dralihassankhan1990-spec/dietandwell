@@ -1,0 +1,41 @@
+/* ================================================================
+   /frontend/src/components/layout/SectionWrapper.module.css
+   ================================================================ */
+
+.section {
+  padding: var(--section-py) var(--space-6);
+  width: 100%;
+}
+
+.sectionBgDefault {
+  background: var(--color-background);
+}
+
+.sectionBgPrimary {
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+}
+
+.sectionBgContainer {
+  background: var(--color-surface-container-low);
+}
+
+.sectionBgSurface {
+  background: var(--color-surface);
+}
+
+.sectionPaddingXl {
+  padding-left: var(--space-24);
+  padding-right: var(--space-24);
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: var(--space-12) var(--space-4);
+  }
+
+  .sectionPaddingXl {
+    padding-left: var(--space-4);
+    padding-right: var(--space-4);
+  }
+}

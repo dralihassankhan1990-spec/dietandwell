@@ -1,0 +1,43 @@
+/* About Page Styles */
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.about-title {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: var(--dark);
+}
+
+.about-text {
+  line-height: 1.8;
+  margin-bottom: 20px;
+  color: #666;
+}
+
+.about-icon {
+  background-color: var(--light-bg);
+  border-radius: 15px;
+  padding: 40px;
+  text-align: center;
+  font-size: 3rem;
+}
+
+.about-value-card {
+  padding: 30px;
+}
+
+.about-value-title {
+  color: var(--primary);
+  margin-bottom: 15px;
+}

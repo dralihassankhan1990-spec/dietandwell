@@ -1,0 +1,71 @@
+/* ================================================================
+   /frontend/src/components/ui/Textarea.module.css
+   ================================================================ */
+
+.textareaGroup {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: var(--space-6);
+  width: 100%;
+}
+
+.label {
+  margin-bottom: var(--space-2);
+  font-size: var(--text-label-lg);
+  font-weight: 600;
+  color: var(--color-on-surface);
+  display: block;
+}
+
+.required {
+  color: var(--color-error);
+  margin-left: 4px;
+}
+
+.textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  background: var(--color-surface-container-lowest);
+  border: 1px solid var(--color-outline-variant);
+  color: var(--color-on-surface);
+  font-family: var(--font-body);
+  font-size: var(--text-body-lg);
+  line-height: 1.6;
+  resize: vertical;
+  min-height: 120px;
+  transition: border-color var(--transition-base), box-shadow var(--transition-base);
+}
+
+.textarea:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(39, 79, 61, 0.15);
+  outline: none;
+}
+
+.textarea:disabled {
+  background: var(--color-surface-container);
+  color: var(--color-on-surface-variant);
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.textareaError {
+  border-color: var(--color-error);
+  background: rgba(186, 26, 26, 0.04);
+}
+
+.textareaError:focus {
+  border-color: var(--color-error);
+  box-shadow: 0 0 0 3px rgba(186, 26, 26, 0.15);
+}
+
+.textarea::placeholder {
+  color: var(--color-on-surface-variant);
+}
+
+.errorText {
+  margin-top: var(--space-1);
+  font-size: var(--text-body-md);
+  color: var(--color-error);
+}

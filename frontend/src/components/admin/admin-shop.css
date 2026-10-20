@@ -1,0 +1,52 @@
+/* Admin shop managers — supplemental styles on top of admin.css.
+   Design system: Playfair Display + Inter, #0A6640 / #B45309. No emojis. */
+
+.shpadmin-img-thumb { position: relative; width: 84px; height: 84px; border-radius: 8px; overflow: hidden; border: 1px solid #E5E7EB; background: #f3f4f6; }
+.shpadmin-img-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.shpadmin-thumb-remove { position: absolute; top: 2px; right: 2px; width: 22px; height: 22px; border: none; border-radius: 50%; background: rgba(220,38,38,0.92); color: #fff; font-size: 12px; cursor: pointer; line-height: 1; }
+.shpadmin-thumbs { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.shpadmin-preview { max-width: 220px; max-height: 120px; border-radius: 8px; border: 1px solid #E5E7EB; margin-top: 8px; object-fit: cover; }
+
+.shpadmin-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.shpadmin-form-grid .span2 { grid-column: span 2; }
+@media (max-width: 720px) { .shpadmin-form-grid { grid-template-columns: 1fr; } .shpadmin-form-grid .span2 { grid-column: span 1; } }
+
+.shpadmin-field label { display: block; font-size: 0.8rem; font-weight: 600; color: #374151; margin-bottom: 6px; }
+.shpadmin-input, .shpadmin-textarea, .shpadmin-select {
+  width: 100%; padding: 10px 12px; border: 1px solid #D1D5DB; border-radius: 8px;
+  font-size: 0.9rem; font-family: var(--font-body); background: #fff; color: #111827;
+}
+.shpadmin-input:focus, .shpadmin-textarea:focus, .shpadmin-select:focus { outline: 2px solid rgba(10,102,64,0.35); border-color: #0A6640; }
+.shpadmin-textarea { resize: vertical; }
+
+.shpadmin-variant-row { display: grid; grid-template-columns: 1fr 140px 40px; gap: 8px; margin-bottom: 8px; align-items: center; }
+.shpadmin-mini-btn { border: 1px solid #D1D5DB; background: #fff; border-radius: 8px; padding: 8px 10px; cursor: pointer; font-size: 0.85rem; font-weight: 600; color: #0A6640; }
+.shpadmin-mini-btn:hover { border-color: #0A6640; }
+.shpadmin-mini-btn.danger { color: #DC2626; }
+
+.shpadmin-type-toggle { display: inline-flex; border: 1px solid #D1D5DB; border-radius: 9999px; overflow: hidden; }
+.shpadmin-type-toggle button { border: none; background: #fff; padding: 9px 20px; font-weight: 600; font-size: 0.85rem; cursor: pointer; color: #6B7280; }
+.shpadmin-type-toggle button.active { background: #0A6640; color: #fff; }
+
+.shpadmin-modal-overlay { position: fixed; inset: 0; background: rgba(15,23,42,0.55); display: flex; align-items: flex-start; justify-content: center; padding: 40px 16px; z-index: 500; overflow-y: auto; }
+.shpadmin-modal { background: #fff; border-radius: 16px; padding: 24px; width: 100%; max-width: 760px; box-shadow: 0 24px 64px rgba(0,0,0,0.25); }
+.shpadmin-modal h3 { font-family: var(--font-heading); margin: 0 0 16px; color: #0A6640; }
+.shpadmin-modal-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px; }
+
+.shpadmin-cat-imgcell img { width: 72px; height: 40px; object-fit: cover; border-radius: 6px; border: 1px solid #E5E7EB; }
+
+.shpadmin-key-cell { font-family: var(--font-mono); font-size: 0.8rem; color: #0A6640; }
+.shpadmin-value-pre { white-space: pre-wrap; font-size: 0.85rem; max-width: 420px; }
+.shpadmin-inline-edit { display: flex; gap: 8px; align-items: flex-start; }
+.shpadmin-inline-edit .shpadmin-input, .shpadmin-inline-edit .shpadmin-textarea { flex: 1; }
+
+.shpadmin-payment-badge { display: inline-block; padding: 3px 10px; border-radius: 9999px; font-size: 0.75rem; font-weight: 600; background: #FEF3C7; color: #92400E; }
+.shpadmin-grant-btn { border: none; background: #0A6640; color: #fff; border-radius: 8px; padding: 7px 14px; font-weight: 600; cursor: pointer; font-size: 0.82rem; }
+.shpadmin-grant-btn:hover { background: #054D30; }
+.shpadmin-reject-btn { border: 1px solid #DC2626; background: #fff; color: #DC2626; border-radius: 8px; padding: 7px 14px; font-weight: 600; cursor: pointer; font-size: 0.82rem; }
+.shpadmin-reject-btn:hover { background: #FEE2E2; }
+.shpadmin-action-row { display: flex; gap: 8px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .shpadmin-modal, .shpadmin-img-thumb { transition: none !important; animation: none !important; }
+}

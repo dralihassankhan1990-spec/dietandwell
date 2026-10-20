@@ -1,0 +1,52 @@
+.nutrition-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border-radius: var(--radius-full);
+    font-size: 0.9rem;
+    font-weight: 700;
+    transition: all var(--transition-base);
+    border: 1px solid transparent;
+}
+
+.nutrition-badge-default {
+    background: var(--glass-bg-strong);
+    color: var(--primary);
+    border-color: rgba(16, 185, 129, 0.2);
+}
+
+.nutrition-badge-default:hover {
+    background: var(--primary);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.nutrition-badge-vegan {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+    box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+}
+
+.nutrition-badge-protein {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    color: white;
+    box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
+}
+
+.nutrition-badge-lowcarb {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    color: white;
+    box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+}
+
+.nutrition-badge-organic {
+    background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
+    color: white;
+    box-shadow: 0 2px 8px rgba(52, 211, 153, 0.3);
+}
+
+.nutrition-badge-icon {
+    font-size: 1rem;
+}

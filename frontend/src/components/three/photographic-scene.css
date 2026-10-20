@@ -1,0 +1,13 @@
+.food-scene{position:relative;width:100%;height:100%;perspective:1100px;isolation:isolate;--depth-y:0px;--depth-turn:0deg}
+.food-scene-plate{position:absolute;inset:8% -9%;display:grid;place-items:center;transform:translateY(calc(var(--depth-y)*-.45)) rotateX(var(--depth-turn)) rotateZ(calc(var(--depth-turn)*-.45));transform-style:preserve-3d}
+.food-scene-plate img{width:100%;height:auto;max-height:100%;object-fit:contain;filter:drop-shadow(0 30px 22px #081e2545)}
+.food-scene-orbit{position:absolute;inset:9% 3%;border:1px solid #b0bd8b55;border-radius:50%;transform:rotateX(28deg) rotateZ(-22deg);pointer-events:none}
+.food-scene-orbit:after{content:'';position:absolute;inset:26px;border:1px dashed #b0bd8b33;border-radius:50%}
+.food-scene-note{position:absolute;z-index:2;padding:19px 22px;background:#fbfaefed;border:1px solid #fff8;box-shadow:0 18px 45px #0a281b18;color:#1e4031;backdrop-filter:blur(8px);border-radius:4px;transform:translateY(var(--depth-y)) rotate(-4deg);max-width:245px}
+.food-scene-note span{display:block;font-size:8px;letter-spacing:.16em;margin-bottom:10px;color:#617552}.food-scene-note strong{font-family:Georgia,serif;font-size:21px;line-height:1.2;font-weight:400}.food-scene-note small{display:block;font-size:10px;margin-top:10px;color:#65715b}
+.food-scene-note--one{left:-1%;bottom:12%}.food-scene-note--two{right:-1%;top:8%;transform:translateY(calc(var(--depth-y)*-.7)) rotate(5deg);background:#e4e9cced}
+.food-scene-footnote{position:absolute;bottom:2%;left:0;right:0;text-align:center;font-size:8px;letter-spacing:.3em;color:#91a383}
+.nutrition-home .hero-badge-top,.nutrition-home .hero-badge-bottom{display:none}
+.nutrition-journey-art .food-scene-note--two{background:#254835;color:#f6f5e9}.nutrition-journey-art .food-scene-note--two span{color:#ced8ad}
+@media(max-width:700px){.food-scene-note{padding:12px;max-width:170px}.food-scene-note strong{font-size:17px}.food-scene-note small{font-size:9px}.food-scene-note--one{bottom:4%;left:0}.food-scene-note--two{top:1%;right:0}.food-scene-plate{inset:2% -4%}.food-scene-footnote{display:none}}
+@media(prefers-reduced-motion:reduce){.food-scene-plate,.food-scene-note{transform:none}}

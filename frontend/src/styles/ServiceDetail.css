@@ -1,0 +1,45 @@
+/* Service Detail Page Styles */
+
+.service-back-btn {
+  background: none;
+  border: none;
+  color: var(--primary);
+  cursor: pointer;
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+
+.service-detail-card {
+  padding: 40px;
+}
+
+.service-detail-title {
+  margin-bottom: 20px;
+}
+
+.service-detail-description {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 20px;
+  color: #666;
+}
+
+.service-long-description {
+  margin-bottom: 20px;
+  line-height: 1.8;
+}
+
+.service-detail-price {
+  font-size: 1.5rem;
+  color: var(--primary);
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.service-detail-duration {
+  margin-bottom: 20px;
+}
+
+.service-enroll-btn {
+  margin-top: 10px;
+}

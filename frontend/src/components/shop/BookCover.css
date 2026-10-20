@@ -1,0 +1,133 @@
+/* BookCover — pure-CSS 3D book with a crisp HTML-text cover.
+   Brand system: Playfair Display + Inter, #0A6640 / #B45309. */
+
+.book3d {
+  position: relative;
+  width: 200px;
+  height: 290px;
+  transform-style: preserve-3d;
+  transform: rotateY(-18deg);
+  margin: 0 auto;
+}
+
+.book3d--sm { width: 140px; height: 200px; }
+.book3d--lg { width: 260px; height: 380px; }
+
+.book3d-cover {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #0A6640 0%, #0d7a4e 45%, #0A6640 100%);
+  border-radius: 4px 10px 10px 4px;
+  transform: translateZ(18px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 26px 22px;
+  color: #fff;
+  overflow: hidden;
+  box-shadow: inset 0 0 40px rgba(0,0,0,0.25);
+}
+
+.book3d--sm .book3d-cover { padding: 16px 14px; transform: translateZ(12px); }
+.book3d--lg .book3d-cover { padding: 34px 28px; transform: translateZ(24px); }
+
+.book3d-cover-shine {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,0.14) 45%, transparent 60%);
+  pointer-events: none;
+}
+
+.book3d-kicker {
+  font-family: var(--font-body);
+  font-size: 0.62rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #FEF3C7;
+  margin: 0;
+}
+
+.book3d-title {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  line-height: 1.25;
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.35);
+}
+
+.book3d--sm .book3d-title { font-size: 1.05rem; }
+.book3d--lg .book3d-title { font-size: 2rem; }
+
+.book3d-subtitle {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.85);
+  margin: 8px 0 0;
+}
+
+.book3d-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.9);
+}
+
+.book3d-leaf {
+  width: 14px;
+  height: 14px;
+  border-radius: 0 50% 0 50%;
+  background: #B45309;
+  display: inline-block;
+}
+
+/* spine (left edge) */
+.book3d-spine {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 36px;
+  background: linear-gradient(180deg, #054D30 0%, #0A6640 100%);
+  border-radius: 4px 0 0 4px;
+  transform: translateX(-18px) rotateY(-90deg);
+  transform-origin: left center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.book3d-spine span {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  color: rgba(255,255,255,0.92);
+  white-space: nowrap;
+  max-height: 90%;
+  overflow: hidden;
+}
+
+/* page block (right edge) */
+.book3d-pages {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  right: 0;
+  width: 36px;
+  background: repeating-linear-gradient(90deg, #f5f1e8 0 2px, #e3ddcf 2px 3px);
+  transform: translateX(18px) rotateY(90deg);
+  transform-origin: right center;
+  border-radius: 0 4px 4px 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .book3d { transform: none; }
+}

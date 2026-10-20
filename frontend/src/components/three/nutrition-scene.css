@@ -1,0 +1,9 @@
+.nutrition-scene{position:relative;width:100%;height:100%;min-height:380px;isolation:isolate}
+.nutrition-scene-mount{position:absolute;inset:0;z-index:2}.nutrition-scene-mount canvas{display:block;width:100%;height:100%}
+.nutrition-scene-halo{position:absolute;inset:12%;border:1px solid #c6d6af40;border-radius:50%;background:radial-gradient(ellipse,#cbdab830,transparent 70%);transform:rotateX(25deg)}
+.nutrition-scene-halo:after{content:'';position:absolute;inset:-12%;border:1px solid #c6d6af18;border-radius:50%}
+.nutrition-scene-shadow{position:absolute;bottom:16%;left:25%;width:50%;height:9%;border-radius:50%;background:#102d2260;filter:blur(20px);z-index:0}
+.nutrition-scene-fallback{position:absolute;inset:16%;width:68%;height:68%;object-fit:cover;border-radius:50%;opacity:1;transition:opacity .4s}
+.nutrition-scene.is-ready .nutrition-scene-fallback{opacity:0}
+.nutrition-scene-caption{position:absolute;bottom:5%;left:0;right:0;text-align:center;font-size:9px;letter-spacing:.25em;color:#d5e3bc;z-index:3}
+@media(max-width:700px){.nutrition-scene{min-height:290px}}

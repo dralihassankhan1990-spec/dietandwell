@@ -1,0 +1,79 @@
+/* Shop Page Styles */
+
+.shop-filter-section {
+  margin-bottom: 50px;
+}
+
+.shop-filter-container {
+  padding: 30px;
+  border-radius: var(--radius-lg);
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.shop-search-input {
+  width: 100%;
+  margin-bottom: 20px;
+  font-size: 1.05rem;
+}
+
+.shop-categories {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.shop-category-btn {
+  font-size: 0.95rem;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.shop-loading {
+  display: flex;
+  justify-content: center;
+  padding: 60px 0;
+}
+
+.shop-pagination {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 60px;
+  flex-wrap: wrap;
+}
+
+.shop-pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.shop-trust-badge {
+  padding: 30px;
+  text-align: center;
+  border-radius: var(--radius-lg);
+}
+
+.shop-badge-icon {
+  font-size: 3rem;
+  margin-bottom: 15px;
+}
+
+.shop-badge-title {
+  font-weight: 800;
+  margin-bottom: 8px;
+  color: var(--dark);
+}
+
+.shop-badge-desc {
+  color: var(--gray);
+  margin: 0;
+}
+
+/* Shop loading spinner size (was an inline style). */
+.shop-loading-spinner {
+  width: 40px;
+  height: 40px;
+}

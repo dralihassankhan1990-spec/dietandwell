@@ -1,0 +1,43 @@
+# DietAndWell — root gitignore (covers the whole monorepo tree)
+node_modules/
+dist/
+build/
+coverage/
+
+# Environment variables — NEVER commit real secrets
+.env
+.env.local
+.env.*.local
+.env.*
+!.env.example
+!.env.*.example
+
+# Local restore points, private exports and generated caches
+backups/
+*.dump
+*.backup
+*.sqlite
+*.sqlite3
+*.pem
+*.key
+*.p12
+*.pfx
+*.tsbuildinfo
+*.zip
+*.7z
+.cache/
+tmp/
+*.timestamp-*.mjs
+*.tmp.mjs
+backend/public/digital-files/
+backend/public/downloads/
+
+# Logs / OS / IDE
+*.log
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Locally uploaded images (dev only; production uses Cloudinary)
+backend/public/uploads/

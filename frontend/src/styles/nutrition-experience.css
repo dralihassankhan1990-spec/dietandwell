@@ -1,0 +1,44 @@
+.nutrition-home{background:#f7f7ef}
+.nutrition-home .nutrition-item{animation:none;min-width:0}
+.nutrition-home .flip-card{width:100%;max-width:230px;height:260px}
+.nutrition-home .text-center-cta{display:flex;justify-content:center;flex-wrap:wrap;gap:12px}
+.nutrition-home .home-cta-spaced{margin-left:0;max-width:100%}
+@media(max-height:650px){.nutrition-home .nutrition-hero-track,.nutrition-home .nutrition-journey{height:auto}.nutrition-home .nutrition-hero-pin,.nutrition-home .nutrition-journey-pin{position:relative;height:auto}.nutrition-home .nutrition-chapter{grid-area:auto;opacity:1;visibility:visible;transform:none;margin-bottom:24px}.nutrition-home .nutrition-chapter h2{font-size:3rem}.nutrition-home .nutrition-chapter-progress{display:none}}
+@media(max-width:700px){.nutrition-home .hero-title{font-size:3rem!important}.nutrition-home .hero-subtitle{font-size:14px;line-height:1.8}.nutrition-home .hero-ctas{gap:8px}.nutrition-home .hero-ctas a{font-size:13px;padding:14px 18px}.nutrition-home .flip-card{height:300px}.nutrition-home .nutrition-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.nutrition-hero-track{height:170vh;position:relative;background:#173b2d}
+.nutrition-hero-pin{position:sticky;top:0;min-height:100svh;display:flex;align-items:center;overflow:hidden;background:radial-gradient(ellipse at 80% 45%,#42613b 0%,#1e4333 40%,#102e26 85%)!important;padding:70px 0!important}
+.nutrition-hero-pin:before{content:'';position:absolute;inset:25px;border:1px solid #dce6be18;pointer-events:none}
+.nutrition-home .hero-overlap{grid-template-columns:1fr 1.1fr;gap:20px;min-height:570px}
+.nutrition-home .hero-title{font-family:Georgia,'Times New Roman',serif;font-size:clamp(3rem,5.6vw,5.6rem);font-weight:400;letter-spacing:-.055em;line-height:1.03}
+.nutrition-home .hero-title em{color:#d5e2ac;font-weight:400}
+.nutrition-home .hero-tag{background:transparent;border:0;border-radius:0;padding:0;font-size:10px;letter-spacing:.23em;color:#d5e2ac}
+.nutrition-home .hero-subtitle{color:#e1e8d5ba;font-size:1rem;max-width:430px;line-height:1.85}
+.nutrition-home .hero-right{height:570px;animation:none;min-width:0}
+.nutrition-home .hero-image-container{height:100%;max-width:none}
+.nutrition-home .hero-left{position:relative;z-index:3;animation:none;padding-right:0}
+.nutrition-hero-pin>div{max-width:1320px;padding-left:clamp(24px,5vw,72px);padding-right:clamp(24px,5vw,72px)}
+.nutrition-home .hero-badge-top,.nutrition-home .hero-badge-bottom{animation:none;background:#f6f4e6ed;box-shadow:0 15px 45px #001b2140;z-index:3;border-radius:3px}
+.nutrition-home .hero-badge-top{right:0;top:15%;transform:rotate(5deg);min-width:95px}
+.nutrition-home .hero-badge-bottom{left:2%;bottom:12%;transform:rotate(-4deg)}
+.nutrition-home .hero-trust-row{gap:12px 20px;max-width:430px}.nutrition-home .hero-trust-item{font-size:11px;font-weight:400;color:#e1e8d5a0}
+.nutrition-home .carousel-container{width:calc(100% - 64px);max-width:1340px;margin:48px auto;height:380px;border-radius:6px;box-shadow:none}
+.nutrition-home .carousel-overlay{background:linear-gradient(90deg,#092b25c9,#092b2520)}
+.nutrition-home .carousel-content{left:10%;transform:translateY(-50%);text-align:left;width:70%;max-width:700px}
+.nutrition-home .carousel-title{font-family:Georgia,serif;font-weight:400;font-size:clamp(2.5rem,4vw,4rem);color:#fff}
+.nutrition-home .carousel-button{width:36px;height:36px;background:#ffffff20;color:white;border:1px solid #ffffff50;font-size:14px;box-shadow:none}
+.nutrition-journey{height:240vh;position:relative;background:#edf0df}
+.nutrition-journey-pin{position:sticky;top:0;min-height:100svh;height:100svh;display:grid;grid-template-columns:1.15fr 1fr;align-items:center;max-width:1400px;margin:auto;padding:70px 6%;gap:6%}
+.nutrition-journey-art{height:580px;min-width:0;background:radial-gradient(ellipse,#acba8750,transparent 65%)}
+.nutrition-journey-art .nutrition-scene-caption{color:#496143}.nutrition-journey-art .nutrition-scene-halo{border-color:#4b673d30}
+.nutrition-eyebrow{font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:#60764f;margin-bottom:38px}
+.nutrition-journey-copy{position:relative;min-height:360px;display:grid;align-content:start}
+.nutrition-chapter{grid-area:2/1;opacity:0;visibility:hidden;transform:translateY(20px);transition:opacity .45s,transform .45s,visibility .45s}
+.nutrition-chapter.is-active{opacity:1;visibility:visible;transform:none}
+.nutrition-chapter-number{font-size:11px;letter-spacing:.15em;color:#7d855f}
+.nutrition-chapter h2{font-family:Georgia,serif;font-size:clamp(4rem,7vw,7rem);font-weight:400;letter-spacing:-.06em;color:#193d2d;line-height:1.15;margin:15px 0 24px}
+.nutrition-chapter h2 em{color:#b5813b}.nutrition-chapter p{font-size:17px;line-height:1.9;color:#5a6858;max-width:390px}
+.nutrition-chapter-progress{display:flex;gap:8px;margin-top:35px;grid-area:3/1}.nutrition-chapter-progress span{width:50px;height:2px;background:#cad0b7}.nutrition-chapter-progress span.is-active{background:#3b6445}
+.nutrition-home .section-heading{font-family:Georgia,serif;font-weight:400;letter-spacing:-.035em}
+@media(max-width:900px){.nutrition-home .hero-overlap{grid-template-columns:1fr 1fr}.nutrition-home .hero-right{height:440px}.nutrition-journey-art{height:420px}.nutrition-home .hero-title{font-size:3.6rem}}
+@media(max-width:700px){.nutrition-hero-track{height:auto}.nutrition-hero-pin{position:relative;min-height:0;padding:60px 0 35px!important}.nutrition-home .hero-overlap{grid-template-columns:1fr;gap:0;min-height:0}.nutrition-home .hero-right{order:0;height:340px}.nutrition-home .hero-title{font-size:3.5rem}.nutrition-home .hero-ctas{flex-direction:row}.nutrition-home .hero-image-container{max-width:420px}.nutrition-home .hero-badge-top{top:15%;right:3%;transform:scale(.85) rotate(5deg)}.nutrition-home .hero-badge-bottom{bottom:12%;left:5%;transform:scale(.85) rotate(-4deg)}.nutrition-home .carousel-container{width:calc(100% - 32px);margin:24px auto;height:290px}.nutrition-home .carousel-content{left:16%;width:70%}.nutrition-home .carousel-subtitle{font-size:14px}.nutrition-journey{height:210vh}.nutrition-journey-pin{grid-template-columns:1fr;gap:0;padding:30px 24px;align-content:center}.nutrition-journey-art{height:300px}.nutrition-journey-copy{min-height:280px}.nutrition-eyebrow{margin-bottom:12px}.nutrition-chapter h2{font-size:3.8rem;margin:8px 0 12px}.nutrition-chapter p{font-size:15px;line-height:1.7}.nutrition-chapter-progress{margin-top:20px}}
+@media(prefers-reduced-motion:reduce){.nutrition-hero-track,.nutrition-journey{height:auto}.nutrition-hero-pin,.nutrition-journey-pin{position:relative;height:auto;min-height:0}.nutrition-chapter{grid-area:auto;opacity:1;visibility:visible;transform:none;transition:none;margin-bottom:30px}.nutrition-chapter h2{font-size:3rem}.nutrition-chapter-progress{display:none}.nutrition-home .carousel-slide{transition:none}.nutrition-journey-pin{padding-top:60px;padding-bottom:60px}}

@@ -1,0 +1,35 @@
+/* TopBar — spec §3.1: green bar above the navbar, hidden on mobile. */
+.topbar {
+  background: var(--color-primary);
+  color: #ffffff;
+  font-size: 0.8rem;
+}
+
+.topbar-inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.topbar-left,
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+}
+
+.topbar a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.topbar a:hover { text-decoration: underline; }
+
+@media (max-width: 768px) {
+  .topbar { display: none; }
+}

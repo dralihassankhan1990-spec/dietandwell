@@ -1,0 +1,80 @@
+/* ================================================================
+   /frontend/src/components/layout/PageHero.module.css
+   ================================================================ */
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 54vh;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-container) 100%);
+  color: white;
+  padding: var(--space-12) var(--space-4);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  opacity: 0.28;
+  z-index: 0;
+}
+
+.hero[style]::before {
+  /* keep decorative wave for image heroes */
+  background: linear-gradient(rgba(255,255,255,0.02), rgba(255,255,255,0.02));
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+}
+
+.heroTitle {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: var(--text-display-lg);
+  font-weight: 400;
+  letter-spacing: var(--tracking-tight);
+  margin-bottom: var(--space-4);
+  line-height: 1.1;
+}
+
+.heroSubtitle {
+  font-size: var(--text-title-lg);
+  font-weight: 400;
+  opacity: 0.9;
+  margin-bottom: var(--space-8);
+  line-height: 1.6;
+}
+
+.heroActions {
+  display: flex;
+  gap: var(--space-4);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    min-height: 50vh;
+    padding: var(--space-8) var(--space-4);
+  }
+
+  .heroTitle {
+    font-size: clamp(1.75rem, 5vw, var(--text-display-lg));
+  }
+
+  .heroSubtitle {
+    font-size: var(--text-title-md);
+  }
+
+  .heroActions {
+    flex-direction: column;
+  }
+}

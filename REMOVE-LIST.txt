@@ -1,0 +1,91 @@
+# DietAndWell — REMOVE-LIST.txt
+# Files/folders to DELETE from the Drive folder "DietAndWell" during the sync.
+# The local working copy already excludes these from the deliverable set.
+# Reviewer: delete exactly these paths. Nothing else is removed.
+#
+# ⚠️  SECRET WARNING — READ FIRST:
+# The Drive folder may contain `.env` files (root `.env`, `backend/.env`).
+# They were NEVER downloaded (secrets are never copied) and are NOT in the
+# local tree. Do NOT delete them blindly — they may hold the real
+# DATABASE_URL / JWT_SECRET. Ali must confirm what to do with them
+# (keep in Drive, or move to the deploy machine and then delete).
+# A mirror-sync that deletes "everything not in the local tree" MUST
+# exempt `.env` files until Ali says otherwise.
+
+# ── Ali-approved: "Stich diet" folder (Stitch design exports, 5 duplicate sets) ──
+Stich diet/
+
+# ── Root: 0-byte broken files (break every vite command) ──
+package.json
+package-lock.json
+
+# ── Root: overlapping guide docs — ALL replaced by the single root README.md ──
+00_START_HERE.md
+API_REFERENCE.md
+CODEBASE_ANALYSIS.md
+DECISION_SUMMARY.md
+DEVELOPER_GUIDE.md
+FINAL_MASTER_GUIDE.md
+IMPLEMENTATION_ROADMAP.md
+MASTER_INTEGRATION_GUIDE.md
+PROJECT_SUMMARY.md
+QUICK_REFERENCE.md
+START_GUIDE.md
+STRATEGIC_ANALYSIS.md
+TESTING_GUIDE.md
+
+# ── Root: scripts / logs / configs that are not part of the app ──
+test-api.js
+extract_docx.py
+dev.log
+.replit
+
+# ── Agent/ folder — stale duplicates (master-reference copies + old CSS/TS/API copies) ──
+# NOTE: the canonical master reference lives OUTSIDE this project folder
+# (~/workspace/dietandwell/MASTER_REFERENCE.md) and is NOT deleted.
+Agent/
+
+# ── attached_assets: prompt scratch file, not app code ──
+attached_assets/
+
+# ── server/ — single unused file (Drizzle/Neon db.ts; nothing imports it) ──
+server/
+
+# ── Backend: stale doc + 0-byte demo data files ──
+# BACKEND-CHANGES.md claims Services/Calculators modules were removed; they exist.
+backend/BACKEND-CHANGES.md
+# 0 bytes in Drive; original demo content lost. Seed tolerates missing files.
+backend/demo-blog-posts.json
+backend/demo-services.json
+
+# ── Frontend: duplicate guides (replaced by root README.md) ──
+frontend/COMPLETE_SETUP_GUIDE.md
+frontend/FOLDER_STRUCTURE.md
+
+# ── Frontend: dead code — verified unimported / unused (frontend worker) ──
+# Delete only after confirming no imports (grep before deleting).
+frontend/src/App.css
+frontend/src/components/UI/Button.module.additions.css
+frontend/src/components/sections/HomeCalculatorSection.jsx
+frontend/src/components/sections/NutritionCarousel.jsx
+frontend/src/components/TestimonialCard.jsx
+frontend/src/components/ServiceCard.jsx
+frontend/src/components/Nutrition/MacroDisplay.jsx
+frontend/src/components/Nutrition/NutritionBadge.jsx
+frontend/src/components/UI/GradientButton.jsx
+frontend/src/components/UI/GradientButton.css
+frontend/src/components/UI/IconCard.jsx
+frontend/src/components/UI/IconCard.css
+
+# ── Build artifacts — delete from Drive if present; never upload ──
+# (node_modules/, dist/, build/, .local/ anywhere in the tree)
+# .local/
+# */node_modules/
+# */dist/
+# */build/
+
+# ── KEEP (do NOT delete) ──
+# frontend/src/pages/ComingSoon.jsx — unrouted but reusable for a genuinely upcoming feature.
+# backend/DEMO-CONTENT-README.md — documents the 0-byte demo files situation.
+# backend/public/uploads/ — local dev upload dir (empty placeholder).
+# .env / backend/.env — see SECRET WARNING above; Ali decides.

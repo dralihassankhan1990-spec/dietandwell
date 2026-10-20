@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /
+
+# High-value SEO pages
+Allow: /blog
+Allow: /blog/
+Allow: /calculators
+Allow: /services
+Allow: /contact
+Allow: /about
+
+# Block private pages from indexing
+Disallow: /admin
+Disallow: /profile
+Disallow: /cart
+Disallow: /login
+Disallow: /register
+Disallow: /api/
+
+Sitemap: https://www.dietandwell.com/sitemap.xml

@@ -1,0 +1,14 @@
+/* ================================================================
+   /frontend/src/components/layout/Container.module.css
+   ================================================================ */
+
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+}
+
+.containerNarrow {
+  max-width: var(--container-narrow);
+}
